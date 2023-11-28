@@ -50,9 +50,21 @@
 
 .logo {
   width: 7.375rem;
+  display: none;
 
   @media (min-width: breakpoint.$desktop) {
     margin: space.$s0 space.$s4;
+    display: block;
+  }
+}
+
+.logoMobile {
+  width: 7.375rem;
+  display: block;
+
+  @media (min-width: breakpoint.$desktop) {
+    margin: space.$s0 space.$s4;
+    display: none;
   }
 }
 
