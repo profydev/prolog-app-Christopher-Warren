@@ -1,10 +1,11 @@
 import Link from "next/link";
 import styles from "./footer-navigation.module.scss";
 
-import packageJSON from "../../../package.json";
+import { useGetVersion } from "../api/use-get-version";
 
 export function FooterNavigation() {
-  const version = packageJSON.version;
+  const { data } = useGetVersion();
+
   return (
     <footer className={styles.footer}>
       <div className={styles.anchorContainer}>
@@ -17,7 +18,7 @@ export function FooterNavigation() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className={styles.logo} src="/icons/logo-small.svg" alt="logo" />
       </div>
-      <div className={styles.version}>Version: {version}</div>
+      <div className={styles.version}>Version: {data?.version}</div>
     </footer>
   );
 }
