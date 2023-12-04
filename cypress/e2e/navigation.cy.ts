@@ -1,3 +1,5 @@
+import packageJSON from "../../package.json";
+
 describe("Sidebar Navigation", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/dashboard");
@@ -100,6 +102,28 @@ describe("Sidebar Navigation", () => {
       cy.get("img[alt='close menu']").click();
       cy.wait(500);
       isNotInViewport("nav");
+    });
+  });
+});
+
+describe("Footer Navigation", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:3000/dashboard");
+  });
+
+  context("desktop resolution", () => {
+    beforeEach(() => {
+      cy.viewport(1025, 900);
+    });
+
+    it("links are working", () => {
+      // check that each link exists
+      const version = packageJSON.version;
+      cy.get("footer").contains(`Version: ${version}`);
+      cy.get("footer").contains("Docs").should("have.attr", "href");
+      cy.get("footer").contains("API").should("have.attr", "href");
+      cy.get("footer").contains("Help").should("have.attr", "href");
+      cy.get("footer").contains("Community").should("have.attr", "href");
     });
   });
 });
