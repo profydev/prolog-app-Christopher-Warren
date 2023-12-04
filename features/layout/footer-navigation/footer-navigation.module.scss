@@ -1,0 +1,98 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+@use "@styles/misc";
+
+.footer {
+  background-color: color.$gray-50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: space.$s6;
+  padding: space.$s6;
+
+  @media (min-width: breakpoint.$desktop) {
+    flex-direction: row;
+    justify-content: space-between;
+    height: space.$s15;
+    padding: 0 space.$s6;
+  }
+}
+
+.anchorContainer {
+  display: flex;
+  gap: space.$s6;
+
+  a {
+    color: color.$gray-500;
+    text-decoration: none;
+  }
+}
+
+.logoContainer {
+  @media (min-width: breakpoint.$desktop) {
+    width: 33%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.version {
+  color: color.$gray-400;
+
+  @media (min-width: breakpoint.$desktop) {
+    order: -1;
+    width: 33%;
+  }
+}
+
+// .footer {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+
+//   height: misc.$footer-height;
+//   padding: 0 space.$s8;
+//   background-color: color.$gray-50;
+
+//   // div:first-child,
+//   // div:last-child {
+//   //   width: 33%;
+//   // }
+
+//   @media (max-width: breakpoint.$desktop) {
+//     flex-direction: column;
+//     justify-content: center;
+//   }
+
+//   // margin: space.$s8 space.$s3;
+
+//   @media (min-width: breakpoint.$desktop) {
+//   }
+// }
+
+// .anchorContainer {
+//   display: flex;
+//   gap: space.$s6;
+
+//   a {
+//     color: color.$gray-500;
+//     text-decoration: none;
+//   }
+// }
+
+// .logoContainer {
+//   display: flex;
+//   justify-content: flex-end;
+// }
+
+// .logo {
+//   height: 2.063rem;
+//   width: 1.438rem;
+// }
+
+// .version {
+//   color: color.$gray-400;
+//   white-space: nowrap;
+// }

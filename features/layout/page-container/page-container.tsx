@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { SidebarNavigation } from "../sidebar-navigation";
 import styles from "./page-container.module.scss";
+import { FooterNavigation } from "../footer-navigation";
 
 type PageContainerProps = {
   children: React.ReactNode;
@@ -18,15 +19,17 @@ export function PageContainer({ children, title, info }: PageContainerProps) {
         <meta name="description" content="Error monitoring" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <SidebarNavigation />
-      <main className={styles.main}>
-        <div className={styles.contentContainer}>
-          <h1 className={styles.title}>{title}</h1>
-          <div className={styles.info}>{info}</div>
-          {children}
-        </div>
-      </main>
+      <div className={styles.main}>
+        <main>
+          <div className={styles.contentContainer}>
+            <h1 className={styles.title}>{title}</h1>
+            <div className={styles.info}>{info}</div>
+            {children}
+          </div>
+        </main>
+        <FooterNavigation />
+      </div>
     </div>
   );
 }
