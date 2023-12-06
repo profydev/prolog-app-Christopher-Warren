@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@fontsource/inter": "^5.0.8",
+    "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query": "^4.32.6",
     "@tanstack/react-query-devtools": "^4.32.6",
     "axios": "^1.4.0",
@@ -48,7 +49,6 @@
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
     "babel-loader": "^9.1.3",
-    "babel-plugin-inline-react-svg": "^2.0.2",
     "cypress": "^13.2.0",
     "eslint": "^8.47.0",
     "eslint-config-next": "^13.4.18",
