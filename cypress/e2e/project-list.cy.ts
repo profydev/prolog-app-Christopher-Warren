@@ -19,6 +19,31 @@ describe("Project List", () => {
       cy.viewport(1025, 900);
     });
 
+    it("shows loading spinner", () => {
+      // Create a Promise and capture a reference to its resolve
+      // function so that we can resolve it when we want to:
+      let sendResponse: (value?: unknown) => void;
+      const trigger = new Promise((resolve) => {
+        sendResponse = resolve;
+      });
+
+      // Intercept requests to the URL we are loading data from and do not
+      // let the response occur until our above Promise is resolved
+      cy.intercept("https://prolog-api.profy.dev/project", (request) => {
+        return trigger.then(() => {
+          request.reply();
+        });
+      });
+
+      cy.visit("http://localhost:3000/dashboard");
+
+      cy.get('[data-cy="loader"]')
+        .should("be.visible")
+        .then(() => {
+          sendResponse();
+        });
+    });
+
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
       const projectStatus = ["Critical", "Warning", "Stable"];

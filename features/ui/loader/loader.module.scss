@@ -1,0 +1,21 @@
+.loadingSpinnerContainer {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingSpinner {
+  animation: loader 1000ms infinite linear;
+
+  @keyframes loader {
+    0% {
+      rotate: 0deg;
+    }
+
+    100% {
+      rotate: 360deg;
+    }
+  }
+}
