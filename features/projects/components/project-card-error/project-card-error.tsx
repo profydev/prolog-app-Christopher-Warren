@@ -8,7 +8,7 @@ type ProjectCardErrorProps = {
 export function ProjectCardError({ error }: ProjectCardErrorProps) {
   console.error(error);
   return (
-    <div className={styles.container}>
+    <div data-cy="error-component" className={styles.container}>
       <svg
         width="20"
         height="20"
