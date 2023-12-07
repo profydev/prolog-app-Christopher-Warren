@@ -1,0 +1,27 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+
+.container {
+  background-color: color.$error-25;
+  display: flex;
+  gap: space.$s2;
+  font: font.$text-md-regular;
+  align-items: center;
+  color: color.$error-700;
+  border: 1px solid color.$error-300;
+  padding: 16px;
+  border-radius: space.$s2;
+}
+
+.errorMessage {
+  width: 100%;
+}
+
+.retryButton {
+  display: flex;
+  color: color.$error-700;
+  gap: space.$s2;
+  white-space: nowrap;
+}
