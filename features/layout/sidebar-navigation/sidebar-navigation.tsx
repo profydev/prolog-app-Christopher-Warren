@@ -8,12 +8,34 @@ import { MenuItemLink } from "./menu-item-link";
 import { Button } from "@features/ui";
 import styles from "./sidebar-navigation.module.scss";
 
+import SupportIcon from "@assets/icons/support.svg";
+import ArrowLeftIcon from "@assets/icons/arrow-left.svg";
+
+import ProjectsIcon from "@assets/icons/projects.svg";
+import IssuesIcon from "@assets/icons/issues.svg";
+import AlertIcon from "@assets/icons/alert.svg";
+import UsersIcon from "@assets/icons/users.svg";
+import SettingsIcon from "@assets/icons/settings.svg";
+import CloseIcon from "@assets/icons/close.svg";
+import MenuIcon from "@assets/icons/menu.svg";
+
+import LogoSmall from "@assets/icons/logo-small.svg";
+import LogoLarge from "@assets/icons/logo-large.svg";
+
 const menuItems = [
-  { text: "Projects", iconSrc: "/icons/projects.svg", href: Routes.projects },
-  { text: "Issues", iconSrc: "/icons/issues.svg", href: Routes.issues },
-  { text: "Alerts", iconSrc: "/icons/alert.svg", href: Routes.alerts },
-  { text: "Users", iconSrc: "/icons/users.svg", href: Routes.users },
-  { text: "Settings", iconSrc: "/icons/settings.svg", href: Routes.settings },
+  {
+    text: "Projects",
+    IconComponent: ProjectsIcon,
+    href: Routes.projects,
+  },
+  { text: "Issues", IconComponent: IssuesIcon, href: Routes.issues },
+  { text: "Alerts", IconComponent: AlertIcon, href: Routes.alerts },
+  { text: "Users", IconComponent: UsersIcon, href: Routes.users },
+  {
+    text: "Settings",
+    IconComponent: SettingsIcon,
+    href: Routes.settings,
+  },
 ];
 
 export function SidebarNavigation() {
@@ -35,32 +57,19 @@ export function SidebarNavigation() {
         )}
       >
         <header className={styles.header}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={
-              isSidebarCollapsed
-                ? "/icons/logo-small.svg"
-                : "/icons/logo-large.svg"
-            }
-            alt="logo"
-            className={styles.logo}
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/icons/logo-large.svg"
-            alt="logo"
-            className={styles.logoMobile}
-          />
+          {isSidebarCollapsed ? (
+            <LogoSmall className={styles.logo} />
+          ) : (
+            <LogoLarge className={styles.logo} />
+          )}
+
+          <LogoLarge className={styles.logoMobile} />
+
           <Button
             onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
             className={styles.menuButton}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={isMobileMenuOpen ? "/icons/close.svg" : "/icons/menu.svg"}
-              alt={isMobileMenuOpen ? "close menu" : "open menu"}
-              className={styles.menuIcon}
-            />
+            {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
           </Button>
         </header>
         <div
@@ -88,7 +97,7 @@ export function SidebarNavigation() {
           <ul className={styles.list}>
             <MenuItemLink
               text="Support"
-              iconSrc="/icons/support.svg"
+              IconComponent={SupportIcon}
               isCollapsed={isSidebarCollapsed}
               isActive={false}
               href="mailto:support@prolog-app.com?subject=Support Request:"
@@ -96,7 +105,7 @@ export function SidebarNavigation() {
 
             <MenuItemButton
               text="Collapse"
-              iconSrc="/icons/arrow-left.svg"
+              IconComponent={ArrowLeftIcon}
               isCollapsed={isSidebarCollapsed}
               onClick={() => toggleSidebar()}
               className={classNames(

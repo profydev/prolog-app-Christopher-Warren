@@ -3,6 +3,8 @@ import styles from "./footer-navigation.module.scss";
 
 import { useGetVersion } from "../api/use-get-version";
 
+import SmallLogo from "@assets/icons/logo-small.svg";
+
 export function FooterNavigation() {
   const { data } = useGetVersion();
 
@@ -15,8 +17,7 @@ export function FooterNavigation() {
         <Link href="#">Community</Link>
       </div>
       <div className={styles.logoContainer}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className={styles.logo} src="/icons/logo-small.svg" alt="logo" />
+        <SmallLogo className={styles.logo} />
       </div>
       <div className={styles.version}>Version: {data?.version}</div>
     </footer>

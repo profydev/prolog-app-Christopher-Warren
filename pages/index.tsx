@@ -1,12 +1,14 @@
 import { Routes } from "@config/routes";
 import styles from "./index.module.scss";
 
+import ContactIcon from "@assets/icons/support.svg";
+import LogoLarge from "@assets/icons/logo-large.svg";
+
 const IssuesPage = () => {
   return (
     <div>
       <header className={styles.header}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/icons/logo-large.svg" alt="Prolog logo" />
+        <LogoLarge />
         <a href={Routes.projects}>Dashboard</a>
       </header>
       <button
@@ -17,8 +19,7 @@ const IssuesPage = () => {
           )
         }
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/icons/message.svg" alt="Contact" />
+        <ContactIcon style={{ color: "white" }} />
       </button>
     </div>
   );
