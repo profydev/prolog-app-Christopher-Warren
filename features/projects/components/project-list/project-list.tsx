@@ -2,6 +2,7 @@ import { ProjectCard } from "../project-card";
 import { useGetProjects } from "../../api/use-get-projects";
 import styles from "./project-list.module.scss";
 import { Loader } from "../../../../features/ui/loader";
+import { ProjectCardError } from "../project-card-error/project-card-error";
 
 export function ProjectList() {
   const { data, isLoading, isError, error } = useGetProjects();
@@ -12,7 +13,7 @@ export function ProjectList() {
 
   if (isError) {
     console.error(error);
-    return <div>Error: {error.message}</div>;
+    return <ProjectCardError />;
   }
 
   return (

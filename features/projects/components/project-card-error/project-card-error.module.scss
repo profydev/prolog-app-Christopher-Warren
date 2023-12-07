@@ -1,0 +1,36 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: font.$text-sm-regular;
+  color: color.$error-700;
+  background-color: color.$error-25;
+  border: 1px solid color.$error-300;
+  padding: space.$s4;
+  border-radius: space.$s2;
+  height: 20px;
+}
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: space.$s3;
+}
+
+.errorButton {
+  color: color.$error-700;
+  gap: space.$s3;
+}
+
+.errorIcon {
+  color: color.$error-700;
+}
+
+.arrowIcon {
+  color: color.$error-700;
+  rotate: 180deg;
+}

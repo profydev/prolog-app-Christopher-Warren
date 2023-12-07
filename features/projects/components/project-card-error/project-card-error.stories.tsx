@@ -1,0 +1,27 @@
+import React from "react";
+import { Meta, StoryFn } from "@storybook/react";
+import { ProjectCardError } from "./project-card-error";
+
+export default {
+  title: "Project/ProjectCardError",
+  component: ProjectCardError,
+  parameters: {
+    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
+    layout: "fullscreen",
+  },
+} as Meta<typeof ProjectCardError>;
+
+const Template: StoryFn<typeof ProjectCardError> = () => (
+  <div
+    style={{
+      maxWidth: 500,
+      width: "100%",
+      boxSizing: "border-box",
+      padding: 10,
+    }}
+  >
+    <ProjectCardError />
+  </div>
+);
+
+export const Default = Template.bind({});
