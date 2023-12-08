@@ -3,6 +3,7 @@ import { useGetProjects } from "../../api/use-get-projects";
 import styles from "./project-list.module.scss";
 import { Loader } from "../../../../features/ui/loader";
 import { ProjectCardError } from "../project-card-error/project-card-error";
+import { Button } from "@features/ui";
 
 export function ProjectList() {
   const { data, isLoading, isError, error } = useGetProjects();
@@ -14,6 +15,12 @@ export function ProjectList() {
   if (isError) {
     return <ProjectCardError error={error} />;
   }
+
+  return (
+    <Button size="medium" color="primary">
+      click me
+    </Button>
+  );
 
   return (
     <ul className={styles.list}>
