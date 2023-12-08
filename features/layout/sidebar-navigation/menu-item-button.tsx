@@ -23,7 +23,7 @@ export function MenuItemButton({
       <Button className={styles.anchor} onClick={onClick}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className={styles.icon} src={iconSrc} alt={`${text} icon`} />{" "}
-        {!isCollapsed && text}{" "}
+        {!isCollapsed && text}
       </Button>
     </li>
   );
