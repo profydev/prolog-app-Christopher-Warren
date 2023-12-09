@@ -2,54 +2,73 @@ import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import styles from "./checkbox.module.scss";
 
-type CheckboxProps = {
+interface CommonProps {
   size?: "small" | "medium";
   label?: string;
-  state?: CheckboxState;
-};
+}
 type CheckboxState = "false" | "true" | "indeterminate";
 
-export function Checkbox({ size, label, state }: CheckboxProps) {
+interface ControlledCheckbox extends CommonProps {
+  state?: never;
+  onChange?: never;
+}
+interface UncontrolledCheckbox extends CommonProps {
+  state: CheckboxState;
+  onChange: () => void;
+}
+type CheckboxProps = ControlledCheckbox | UncontrolledCheckbox;
+
+// interface CheckboxProps {
+//   size?: "small" | "medium";
+//   label?: string;
+//   state?: CheckboxState;
+//   onChange?: () => void;
+// }
+
+export function Checkbox({ label, size, state, onChange }: CheckboxProps) {
   const checkboxRef = useRef<HTMLInputElement>(null);
-  const [checkboxState, setCheckboxState] = useState<CheckboxState>(
-    state || "false",
-  );
+  const [uncontrolledState, setUncontrolledState] =
+    useState<CheckboxState>("false");
 
   useEffect(() => {
     const notIndeterminate = checkboxRef.current?.indeterminate === false;
 
     if (notIndeterminate) {
-      if (checkboxState === "indeterminate") {
+      if (uncontrolledState === "indeterminate" || state === "indeterminate") {
         checkboxRef.current.indeterminate = true;
       } else {
         checkboxRef.current.indeterminate = false;
       }
     }
-  }, [checkboxState]);
+  }, [uncontrolledState, state]);
 
-  const handleChange = () => {
-    if (checkboxState === "false") {
-      setCheckboxState("true");
+  const uncontrolledHandler = () => {
+    if (uncontrolledState === "false") {
+      setUncontrolledState("true");
     }
-    if (checkboxState === "true") {
-      setCheckboxState("indeterminate");
+    if (uncontrolledState === "true") {
+      setUncontrolledState("indeterminate");
     }
-    if (checkboxState === "indeterminate") {
-      setCheckboxState("false");
+    if (uncontrolledState === "indeterminate") {
+      setUncontrolledState("false");
     }
   };
 
-  const checked = checkboxState === "true" ? true : false;
+  const uncontrolledChecked = uncontrolledState === "true" ? true : false;
+
+  const controlledChecked = state === "true" ? true : false;
+
+  const isControlled = !!state && !!onChange;
 
   return (
     <>
       <label className={classNames(styles.label, styles[size || ""])}>
         <input
           className={classNames(styles.checkbox, styles[size || ""])}
-          type="checkbox"
-          checked={checked}
           ref={checkboxRef}
-          onChange={handleChange}
+          type="checkbox"
+          checked={isControlled ? controlledChecked : uncontrolledChecked}
+          onChange={isControlled ? onChange : uncontrolledHandler}
         />
         {label}
       </label>
