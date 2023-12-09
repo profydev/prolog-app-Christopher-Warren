@@ -31,9 +31,9 @@ export function Checkbox({ label, size, state, onChange }: CheckboxProps) {
     useState<CheckboxState>("false");
 
   useEffect(() => {
-    const notIndeterminate = checkboxRef.current?.indeterminate === false;
+    const checkboxLoaded = checkboxRef.current;
 
-    if (notIndeterminate) {
+    if (checkboxLoaded) {
       if (uncontrolledState === "indeterminate" || state === "indeterminate") {
         checkboxRef.current.indeterminate = true;
       } else {
@@ -55,7 +55,6 @@ export function Checkbox({ label, size, state, onChange }: CheckboxProps) {
   };
 
   const uncontrolledChecked = uncontrolledState === "true" ? true : false;
-
   const controlledChecked = state === "true" ? true : false;
 
   const isControlled = !!state && !!onChange;

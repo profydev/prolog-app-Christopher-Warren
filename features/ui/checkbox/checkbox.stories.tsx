@@ -4,26 +4,25 @@ import { Meta, StoryFn } from "@storybook/react";
 export default {
   title: "UI/Checkbox",
   component: Checkbox,
-  argTypes: {
-    variant: {
-      options: ["primary", "secondary"],
-      control: { type: "radio" },
-    },
-  },
   paramaters: {
     layout: "fullscreen",
   },
 } as Meta<typeof Checkbox>;
-
-const Template: StoryFn<typeof Checkbox> = () => (
+const voidFn = () => {};
+const Template: StoryFn<typeof Checkbox> = ({
+  size,
+  label,
+  state = "false",
+}) => (
   <div>
-    <Checkbox />
+    <Checkbox size={size} label={label} state={state} onChange={voidFn} />
   </div>
 );
 
 export const Default = Template.bind({});
 Default.args = {
   size: "medium",
+  label: "Label",
 };
 Default.parameters = {
   viewMode: "docs",
