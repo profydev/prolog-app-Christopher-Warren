@@ -1,74 +1,104 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { InputHTMLAttributes, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import styles from "./checkbox.module.scss";
 
-interface CommonProps {
+type CheckboxState = boolean | "indeterminate";
+
+type CommonProps = {
   size?: "small" | "medium";
   label?: string;
-}
-type CheckboxState = "false" | "true" | "indeterminate";
+  checked?: CheckboxState;
+} & Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "checked">;
 
-interface ControlledCheckbox extends CommonProps {
-  state?: never;
+type UncontrolledCheckbox = CommonProps & {
+  checked?: never;
   onChange?: never;
-}
-interface UncontrolledCheckbox extends CommonProps {
-  state: CheckboxState;
-  onChange: () => void;
-}
+};
+
+type ControlledCheckbox = CommonProps & {
+  checked: CheckboxState;
+  onChange: (e?: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
 type CheckboxProps = ControlledCheckbox | UncontrolledCheckbox;
 
-// interface CheckboxProps {
-//   size?: "small" | "medium";
-//   label?: string;
-//   state?: CheckboxState;
-//   onChange?: () => void;
-// }
-
-export function Checkbox({ label, size, state, onChange }: CheckboxProps) {
+export function Checkbox({
+  label,
+  size,
+  checked,
+  onChange: handleControlledChange,
+  defaultChecked,
+  ...props
+}: CheckboxProps) {
   const checkboxRef = useRef<HTMLInputElement>(null);
   const [uncontrolledState, setUncontrolledState] =
-    useState<CheckboxState>("false");
+    useState<CheckboxState>(false);
+
+  const isControlled = checked !== undefined && !!handleControlledChange;
+
+  const handleUncontrolledChange = () => {
+    if (defaultChecked) {
+      return;
+    }
+    if (!uncontrolledState) {
+      setUncontrolledState(true);
+    }
+    if (uncontrolledState) {
+      setUncontrolledState("indeterminate");
+    }
+    if (uncontrolledState === "indeterminate") {
+      setUncontrolledState(false);
+    }
+  };
+
+  const handleChecked = () => {
+    const uncontrolledChecked = uncontrolledState ? true : false;
+    const controlledChecked = checked ? true : false;
+    if (defaultChecked) {
+      return undefined;
+    }
+
+    if (isControlled) {
+      return controlledChecked;
+    } else {
+      return uncontrolledChecked;
+    }
+  };
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    return isControlled
+      ? handleControlledChange(e)
+      : handleUncontrolledChange();
+  };
 
   useEffect(() => {
     const checkboxLoaded = checkboxRef.current;
 
     if (checkboxLoaded) {
-      if (uncontrolledState === "indeterminate" || state === "indeterminate") {
+      if (
+        uncontrolledState === "indeterminate" ||
+        checked === "indeterminate"
+      ) {
         checkboxRef.current.indeterminate = true;
       } else {
         checkboxRef.current.indeterminate = false;
       }
     }
-  }, [uncontrolledState, state]);
-
-  const uncontrolledHandler = () => {
-    if (uncontrolledState === "false") {
-      setUncontrolledState("true");
-    }
-    if (uncontrolledState === "true") {
-      setUncontrolledState("indeterminate");
-    }
-    if (uncontrolledState === "indeterminate") {
-      setUncontrolledState("false");
-    }
-  };
-
-  const uncontrolledChecked = uncontrolledState === "true" ? true : false;
-  const controlledChecked = state === "true" ? true : false;
-
-  const isControlled = !!state && !!onChange;
+  }, [uncontrolledState, checked]);
 
   return (
     <>
       <label className={classNames(styles.label, styles[size || ""])}>
         <input
+          {...props}
+          defaultChecked={defaultChecked}
           className={classNames(styles.checkbox, styles[size || ""])}
           ref={checkboxRef}
           type="checkbox"
-          checked={isControlled ? controlledChecked : uncontrolledChecked}
-          onChange={isControlled ? onChange : uncontrolledHandler}
+          checked={handleChecked()}
+          onChange={(e) => handleOnChange(e)}
         />
+
         {label}
       </label>
     </>

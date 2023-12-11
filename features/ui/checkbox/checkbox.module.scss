@@ -6,7 +6,11 @@
 // width: space.$s5;
 // height: space.$s5;
 
+// features/ui/checkbox/checkbox.module.scss
+// Expected selector ".label .checkbox:indeterminate::after" to come before selector ".label .checkbox:checked:disabled::after"
+
 .label {
+  position: relative;
   font: font.$text-sm-medium;
   color: color.$gray-700;
   display: inline-flex;
@@ -27,6 +31,7 @@
   }
 
   .checkbox {
+    position: relative;
     appearance: none;
     appearance: none;
     appearance: none;
@@ -59,13 +64,43 @@
     border-radius: 4px;
 
     &:checked {
-      border-color: color.$primary-600;
-      background: url("/icons/check.svg") color.$primary-50 no-repeat center;
+      background-color: color.$primary-50;
+      border: 1px solid color.$primary-300;
+
+      &::after {
+        background-color: color.$primary-600;
+        border-color: color.$primary-600;
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        mask: url("/icons/check.svg") no-repeat center;
+      }
     }
 
     &:indeterminate {
-      border-color: color.$primary-600;
-      background: url("/icons/minus.svg") color.$primary-50 no-repeat center;
+      background-color: color.$primary-50;
+      border: 1px solid color.$primary-300;
+
+      &::after {
+        background-color: color.$primary-600;
+        border-color: color.$primary-600;
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        mask: url("/icons/minus.svg") no-repeat center;
+      }
+    }
+
+    &:disabled {
+      background-color: color.$gray-100;
+      color: color.$gray-300;
+      border: 1px solid color.$gray-200;
+
+      &::after {
+        background-color: color.$gray-200;
+      }
     }
   }
 }

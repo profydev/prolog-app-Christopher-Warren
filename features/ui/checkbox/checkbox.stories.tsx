@@ -12,10 +12,10 @@ const voidFn = () => {};
 const Template: StoryFn<typeof Checkbox> = ({
   size,
   label,
-  state = "false",
+  checked = false,
 }) => (
   <div>
-    <Checkbox size={size} label={label} state={state} onChange={voidFn} />
+    <Checkbox size={size} label={label} checked={checked} onChange={voidFn} />
   </div>
 );
 
