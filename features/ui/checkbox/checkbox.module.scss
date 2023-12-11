@@ -1,0 +1,103 @@
+@use "@styles/breakpoint";
+@use "@styles/space";
+@use "@styles/color";
+@use "@styles/font";
+
+// width: space.$s5;
+// height: space.$s5;
+
+// features/ui/checkbox/checkbox.module.scss
+// Expected selector ".label .checkbox:indeterminate::after" to come before selector ".label .checkbox:checked:disabled::after"
+
+.label {
+  position: relative;
+  font: font.$text-sm-medium;
+  color: color.$gray-700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  // offset outline due to overlap
+  margin: 2px 4px;
+
+  &.small {
+    gap: 8px;
+    font: font.$text-sm-medium;
+  }
+
+  &.medium {
+    gap: 12px;
+    font: font.$text-md-medium;
+  }
+
+  .checkbox {
+    position: relative;
+    appearance: none;
+    width: space.$s4;
+    height: space.$s4;
+
+    &.small {
+      width: space.$s4;
+      height: space.$s4;
+    }
+
+    &.medium {
+      width: space.$s5;
+      height: space.$s5;
+    }
+
+    &:hover {
+      background-color: color.$primary-50;
+      border: 1px solid color.$primary-300;
+    }
+
+    &:focus {
+      background-color: white;
+      outline: 4px solid color.$primary-50;
+    }
+
+    background-color: white;
+    border: 1px solid color.$gray-300;
+    border-radius: 4px;
+
+    &:checked {
+      background-color: color.$primary-50;
+      border: 1px solid color.$primary-300;
+
+      &::after {
+        background-color: color.$primary-600;
+        border-color: color.$primary-600;
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        mask: url("/icons/check.svg") no-repeat center;
+      }
+    }
+
+    &:indeterminate {
+      background-color: color.$primary-50;
+      border: 1px solid color.$primary-300;
+
+      &::after {
+        background-color: color.$primary-600;
+        border-color: color.$primary-600;
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        mask: url("/icons/minus.svg") no-repeat center;
+      }
+    }
+
+    &:disabled {
+      background-color: color.$gray-100;
+      color: color.$gray-300;
+      border: 1px solid color.$gray-200;
+
+      &::after {
+        background-color: color.$gray-200;
+      }
+    }
+  }
+}

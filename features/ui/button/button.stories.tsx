@@ -4,12 +4,6 @@ import { Button } from "@features/ui/";
 export default {
   title: "UI/Button",
   component: Button,
-  argTypes: {
-    variant: {
-      options: ["primary", "secondary"],
-      control: { type: "radio" },
-    },
-  },
   paramaters: {
     layout: "fullscreen",
   },
