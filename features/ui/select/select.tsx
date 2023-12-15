@@ -14,6 +14,7 @@ type SelectProps = {
   label?: string;
   hint?: string;
   error?: Error;
+  disabled?: boolean;
 };
 
 export function Select({
@@ -22,6 +23,7 @@ export function Select({
   label,
   error,
   hint,
+  disabled,
 }: SelectProps) {
   const [toggleSelect, setToggleSelect] = useState(false);
   const [selectedValue, setSelectedValue] = useState<Option | null>(null);
@@ -30,7 +32,7 @@ export function Select({
 
   useEffect(() => {
     const handleMouseDown = (e: MouseEvent) => {
-      console.log(selectRef.current?.parentNode);
+      if (disabled) return;
       if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
         setToggleSelect(false);
       }
@@ -43,10 +45,12 @@ export function Select({
 
   const handleToggleSelect: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
+    if (disabled) return;
     setToggleSelect(!toggleSelect);
   };
 
   const handleSelectValue = (option: Option) => {
+    if (disabled) return;
     setSelectedValue(option);
     setToggleSelect(false);
   };
@@ -76,9 +80,11 @@ export function Select({
       <label>
         <span className={styles.label}>{label}</span>
         <button
+          disabled={disabled}
           onClick={handleToggleSelect}
           className={classNames(
             styles.dropdown,
+
             !selectedValue && styles.placeholder,
             error && styles.hasError,
           )}
