@@ -1,0 +1,119 @@
+@use "@styles/breakpoint";
+@use "@styles/space";
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/misc";
+
+// Remove styles
+.dropdown,
+.optionsContainer button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+  display: block;
+}
+
+.mainContainer {
+  position: relative;
+}
+
+.label {
+  display: block;
+  color: color.$gray-700;
+  font: font.$text-sm-medium;
+  margin-bottom: 6px;
+}
+
+.hint {
+  display: block;
+  font: font.$text-sm-regular;
+  color: color.$gray-500;
+  margin-top: 6px;
+  cursor: default;
+}
+
+.error {
+  display: block;
+  font: font.$text-sm-regular;
+  color: color.$error-500;
+  margin-top: 6px;
+  cursor: default;
+}
+
+.dropdown {
+  &.placeholder {
+    color: color.$gray-500;
+  }
+
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 14px;
+  box-shadow: misc.$shadow-xs;
+  border: 1px solid color.$gray-300;
+  border-radius: space.$s2;
+
+  .content {
+    display: flex;
+    gap: space.$s2;
+    white-space: nowrap;
+  }
+
+  &.hasError {
+    border: 1px solid color.$error-300;
+  }
+
+  &:disabled {
+    border: 1px solid color.$gray-300;
+    background-color: color.$gray-50;
+    color: color.$gray-500;
+  }
+
+  &:focus {
+    box-shadow: misc.$shadow-primary-100;
+    border: 1px solid color.$primary-300;
+
+    &.hasError {
+      border: 1px solid color.$error-300;
+      box-shadow: misc.$shadow-error;
+    }
+  }
+}
+
+.optionsContainer {
+  padding: 4px 0;
+  margin: 0;
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: misc.$shadow-lg;
+  list-style: none;
+  width: 100%;
+  border-radius: space.$s2;
+  margin-top: 8px;
+  font: font.$text-md-regular;
+
+  &.show {
+    display: block;
+  }
+
+  button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 14px;
+
+    &:focus {
+      outline: 4px solid color.$primary-100;
+      border-radius: space.$s2;
+    }
+
+    &.isSelected {
+      background-color: color.$primary-25;
+    }
+  }
+}
