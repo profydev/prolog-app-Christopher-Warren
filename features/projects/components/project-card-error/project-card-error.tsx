@@ -9,6 +9,7 @@ export function ProjectCardError({ error }: ProjectCardErrorProps) {
   console.error(error);
   return (
     <div data-cy="error-component" className={styles.container}>
+      {/* TODO: Need to use static img here */}
       <svg
         width="20"
         height="20"
