@@ -3,9 +3,12 @@
 $header-height: 4rem;
 $footer-height: 3.75rem;
 $shadow-xs: 0 1px 2px 0 rgb(16 24 40 / 5%);
-$shadow-primary-100: 0 0 0 4px #f4ebff,
+$shadow-primary-100:
+  0 0 0 4px #f4ebff,
   0 1px 2px 0 rgb(16 24 40 / 5%);
-$shadow-lg: 0 4px 6px -2px rgb(16 24 40 / 5%),
+$shadow-lg:
+  0 4px 6px -2px rgb(16 24 40 / 5%),
   0 12px 16px -4px rgb(16 24 40 / 10%);
-$shadow-error: 0 0 0 4px #fee4e2,
+$shadow-error:
+  0 0 0 4px #fee4e2,
   0 1px 2px 0 rgb(16 24 40 / 5%);

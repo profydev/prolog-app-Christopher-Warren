@@ -16,5 +16,6 @@ module.exports = {
         ],
       },
     ],
+    "scss/dollar-variable-colon-space-after": "always-single-line",
   },
 };
