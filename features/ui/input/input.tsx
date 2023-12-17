@@ -24,7 +24,7 @@ export function Input({
   return (
     <div>
       <label className={styles.label}>
-        {label && <span>Label</span>}
+        {label && <span>{label}</span>}
         <div
           className={classNames(
             styles.inputContainer,
