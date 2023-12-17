@@ -1,0 +1,67 @@
+@use "@styles/breakpoint";
+@use "@styles/space";
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/misc";
+
+.label {
+  span {
+    display: block;
+    margin-bottom: 6px;
+    font: font.$text-sm-medium;
+    color: color.$gray-700;
+  }
+}
+
+.hint {
+  display: block;
+  margin-top: 6px;
+  font: font.$text-sm-regular;
+  color: color.$gray-500;
+  cursor: default;
+
+  &.error {
+    color: color.$error-500;
+  }
+}
+
+.inputContainer {
+  display: inline-flex;
+  border: 1px solid color.$gray-300;
+  gap: space.$s2;
+  border-radius: space.$s2;
+  padding: 10px 14px;
+
+  &.disabled {
+    background-color: color.$gray-50;
+  }
+
+  &.error {
+    border: 1px solid color.$error-300;
+  }
+
+  &:focus-within {
+    box-shadow: misc.$shadow-primary-100;
+    border: 1px solid color.$primary-300;
+
+    &.error {
+      border: 1px solid color.$error-300;
+      box-shadow: misc.$shadow-error;
+    }
+  }
+}
+
+.input {
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  font: font.$text-md-regular;
+  color: color.$gray-900;
+
+  &::placeholder {
+    color: color.$gray-500;
+  }
+}
