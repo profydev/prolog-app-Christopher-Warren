@@ -2,20 +2,7 @@
 import React, { useState, MouseEventHandler, useEffect, useRef } from "react";
 import classNames from "classnames";
 import styles from "./select.module.scss";
-
-type Option = {
-  id: string;
-  value: string;
-};
-
-type SelectProps = {
-  optionsList: Option[];
-  logoSrc?: string;
-  label?: string;
-  hint?: string;
-  error?: Error;
-  disabled?: boolean;
-};
+import { Option, SelectProps } from "@features/ui/";
 
 export function Select({
   optionsList,
@@ -24,12 +11,15 @@ export function Select({
   error,
   hint,
   disabled,
+  placeholder,
+  onChange,
+  onReset,
+  selectedValue,
 }: SelectProps) {
   const [toggleSelect, setToggleSelect] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<Option | null>(null);
-
   const selectRef = useRef<HTMLDivElement | null>(null);
 
+  // Handle closing dropdown when clicking outside element
   useEffect(() => {
     const handleMouseDown = (e: MouseEvent) => {
       if (disabled) return;
@@ -51,7 +41,14 @@ export function Select({
 
   const handleSelectValue = (option: Option) => {
     if (disabled) return;
-    setSelectedValue(option);
+    if (!onChange) return;
+    onChange(option);
+    setToggleSelect(false);
+  };
+  const handleReset = () => {
+    if (disabled) return;
+    if (!onReset) return;
+    onReset();
     setToggleSelect(false);
   };
 
@@ -93,7 +90,7 @@ export function Select({
             {logoSrc && (
               <img src={logoSrc} className={styles.icon} alt="" aria-disabled />
             )}
-            {selectedValue?.value || "Select team member"}
+            {selectedValue?.value || placeholder}
           </div>
 
           <img src="/icons/chevron-down.svg" alt="" aria-disabled />
@@ -112,6 +109,17 @@ export function Select({
           styles.optionsContainer,
         )}
       >
+        {onReset && (
+          <li>
+            <button
+              tabIndex={0}
+              className={classNames(styles.reset)}
+              onClick={handleReset}
+            >
+              {placeholder}
+            </button>
+          </li>
+        )}
         {renderOptions()}
       </ul>
     </div>
