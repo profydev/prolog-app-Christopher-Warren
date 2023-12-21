@@ -53,12 +53,13 @@
 
 .input {
   border: none;
+  font: font.$text-md-regular;
+  padding: 0;
 
   &:focus {
     outline: none;
   }
 
-  font: font.$text-md-regular;
   color: color.$gray-900;
 
   &::placeholder {
