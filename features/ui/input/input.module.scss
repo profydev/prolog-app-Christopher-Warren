@@ -26,8 +26,12 @@
 }
 
 .inputContainer {
+  height: 44px;
+  box-sizing: border-box;
   display: inline-flex;
+  align-items: center;
   border: 1px solid color.$gray-300;
+  box-shadow: misc.$shadow-xs;
   gap: space.$s2;
   border-radius: space.$s2;
   padding: 10px 14px;
