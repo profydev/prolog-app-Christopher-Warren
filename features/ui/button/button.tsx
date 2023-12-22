@@ -1,4 +1,5 @@
-import React, { ButtonHTMLAttributes, ReactElement } from "react";
+/* eslint-disable @next/next/no-img-element */
+import React, { ButtonHTMLAttributes } from "react";
 import classNames from "classnames";
 import styles from "./button.module.scss";
 
@@ -12,19 +13,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | "empty-gray"
     | "error"
     | "empty-error";
-  icon?: ReactElement;
+  iconSrc?: string;
   iconPosition?: "leading" | "trailing";
 }
 
 export function Button({
   size,
   color,
-  icon,
+  iconSrc,
   iconPosition = "leading",
   children,
   ...props
 }: ButtonProps) {
-  const hasIcon = icon ? "hasIcon" : "";
+  const hasIcon = iconSrc ? "hasIcon" : "";
 
   return (
     <button
@@ -37,9 +38,13 @@ export function Button({
         styles[hasIcon],
       )}
     >
-      {iconPosition === "leading" && icon}
+      {iconSrc && iconPosition === "leading" && (
+        <img aria-disabled alt="" src={iconSrc} />
+      )}
       {children}
-      {iconPosition === "trailing" && icon}
+      {iconSrc && iconPosition === "trailing" && (
+        <img aria-disabled alt="" src={iconSrc} />
+      )}
     </button>
   );
 }
