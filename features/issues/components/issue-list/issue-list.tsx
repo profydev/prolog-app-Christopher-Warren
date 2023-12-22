@@ -11,11 +11,12 @@ export function IssueList() {
   const status = router.query.status?.toString() || "";
   const level = router.query.level?.toString() || "";
   const project = router.query.project?.toString() || "";
-  const navigateToPage = (newPage: number) =>
+  const navigateToPage = (newPage: number) => {
     router.push({
       pathname: router.pathname,
-      query: { page: newPage },
+      query: { ...router.query, page: newPage },
     });
+  };
 
   const issuesPage = useGetIssues({ page, status, level, project });
   const projects = useGetProjects();
