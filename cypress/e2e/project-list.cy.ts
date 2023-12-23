@@ -82,5 +82,21 @@ describe("Project List", () => {
 
       cy.get('[data-cy="error-component"]');
     });
+    it("view issue links navigate to issues page with filter", () => {
+      cy.visit("http://localhost:3000/dashboard");
+      // how many assumptions to make?
+
+      cy.get("main")
+        .find("a")
+        .each((el, index) => {
+          cy.wrap(el).should(
+            "have.attr",
+            "href",
+            `/dashboard/issues?project=${encodeURIComponent(
+              mockProjects[index].name,
+            )}`,
+          );
+        });
+    });
   });
 });
