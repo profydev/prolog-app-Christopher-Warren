@@ -9,6 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   hint?: string;
   iconSrc?: string;
   error?: Error;
+  placeholder?: string;
 }
 
 export function Input({
@@ -17,6 +18,7 @@ export function Input({
   hint,
   iconSrc,
   error,
+  placeholder,
   ...props
 }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -38,7 +40,7 @@ export function Input({
           <input
             {...props}
             disabled={disabled}
-            placeholder="olivia@untitledui.com"
+            placeholder={placeholder}
             className={classNames(styles.input)}
             ref={inputRef}
           />

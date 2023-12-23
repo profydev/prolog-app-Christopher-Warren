@@ -2,10 +2,9 @@
 @use "@styles/space";
 @use "@styles/color";
 @use "@styles/font";
+@use "@styles/misc";
 
 .button {
-  cursor: pointer;
-
   /* remove default button styles */
   border: none;
   margin: 0;
@@ -15,12 +14,17 @@
   -webkit-font-smoothing: inherit;
   -moz-osx-font-smoothing: inherit;
   appearance: none;
-  border-radius: space.$s2;
+  white-space: nowrap;
 
   &::-moz-focus-inner {
     border: 0;
     padding: 0;
   }
+
+  height: 44px;
+  cursor: pointer;
+  border-radius: space.$s2;
+  box-shadow: misc.$shadow-xs;
 }
 
 .hasIcon {

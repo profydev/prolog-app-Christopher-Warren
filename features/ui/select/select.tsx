@@ -75,7 +75,7 @@ export function Select({
   return (
     <div ref={selectRef} className={styles.mainContainer}>
       <label>
-        <span className={styles.label}>{label}</span>
+        {label && <span className={styles.label}>{label}</span>}
         <button
           disabled={disabled}
           onClick={handleToggleSelect}

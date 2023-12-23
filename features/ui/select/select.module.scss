@@ -19,6 +19,8 @@
 
 .mainContainer {
   position: relative;
+  min-width: 160px;
+  max-width: 320px;
 }
 
 .label {
@@ -49,8 +51,11 @@
     color: color.$gray-500;
   }
 
+  height: 44px;
+  font: font.$text-md-regular;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 10px 14px;
   box-shadow: misc.$shadow-xs;
@@ -58,7 +63,7 @@
   border-radius: space.$s2;
 
   .content {
-    display: flex;
+    // display: flex;
     gap: space.$s2;
     white-space: nowrap;
   }
@@ -89,6 +94,7 @@
   margin: 0;
   display: none;
   position: absolute;
+  z-index: 100;
   background-color: white;
   box-shadow: misc.$shadow-lg;
   list-style: none;
@@ -106,6 +112,7 @@
     display: flex;
     justify-content: space-between;
     padding: 10px 14px;
+    text-transform: capitalize;
 
     &.reset {
       color: color.$gray-500;
