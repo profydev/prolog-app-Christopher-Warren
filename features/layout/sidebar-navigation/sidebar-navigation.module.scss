@@ -9,6 +9,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1000;
 
   @media (min-width: breakpoint.$desktop) {
     width: 17.5rem;
