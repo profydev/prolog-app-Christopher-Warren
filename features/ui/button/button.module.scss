@@ -115,6 +115,7 @@
 
 .empty {
   color: color.$primary-600;
+  box-shadow: none;
 
   &:hover {
     background-color: color.$primary-50;
@@ -132,6 +133,7 @@
 
 .empty-gray {
   color: color.$gray-500;
+  box-shadow: none;
 
   &:hover {
     background-color: color.$gray-50;
@@ -166,6 +168,7 @@
 
 .empty-error {
   color: color.$error-700;
+  box-shadow: none;
 
   &:hover {
     background-color: color.$error-50;
