@@ -1,4 +1,3 @@
-import { Button } from "@features/ui";
 import styles from "./project-card-error.module.scss";
 
 type ProjectCardErrorProps = {
@@ -36,24 +35,11 @@ export function ProjectCardError({ error }: ProjectCardErrorProps) {
         There was a problem while loading the project data
       </div>
 
-      <Button className={styles.retryButton}>
+      <button className={styles.retryButton}>
         <span>Try again</span>
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.16669 10.0001H15.8334M15.8334 10.0001L10 4.16675M15.8334 10.0001L10 15.8334"
-            stroke="#B42318"
-            strokeWidth="1.67"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </Button>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/icons/arrow-right-error.svg" alt="" />
+      </button>
     </div>
   );
 }
