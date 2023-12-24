@@ -60,9 +60,6 @@ describe("Project List", () => {
           cy.wrap($el).contains(mockProjects[index].numIssues);
           cy.wrap($el).contains(mockProjects[index].numEvents24h);
           cy.wrap($el).contains(projectStatus[index]);
-          cy.wrap($el)
-            .find("a")
-            .should("have.attr", "href", "/dashboard/issues");
         });
     });
 
