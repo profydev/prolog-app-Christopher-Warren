@@ -3,7 +3,7 @@ import styles from "./landing-page-container.module.scss";
 
 export function LandingPageContainer() {
   return (
-    <div>
+    <div className={styles.mainContainer}>
       <HorizontalNavigation />
       <button
         className={styles.contactButton}

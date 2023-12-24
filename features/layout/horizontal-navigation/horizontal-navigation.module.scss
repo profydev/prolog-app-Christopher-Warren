@@ -1,10 +1,95 @@
+@use "styles/space";
+@use "@styles/font";
+@use "styles/breakpoint";
+@use "styles/color";
+
+.menuItem {
+  text-decoration: none;
+  font: font.$text-md-medium;
+  color: color.$gray-500;
+}
+
 .header {
+  background: white;
+
+  & > div {
+    flex: 1 0;
+  }
+
+  @media (min-width: breakpoint.$desktop) {
+    height: 80px;
+    padding: 0 7rem;
+  }
+
+  padding: 0 1rem;
   width: 100%;
   height: 80px;
-  padding: 0 2rem;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+}
+
+.desktopMenuItems {
+  display: none;
+
+  @media (min-width: breakpoint.$desktop) {
+    display: block;
+    text-align: center;
+
+    a {
+      margin: 0 1rem;
+    }
+  }
+}
+
+.dashboardLinkContainer {
+  display: none;
+
+  @media (min-width: breakpoint.$desktop) {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+    align-items: flex-end;
+    text-align: center;
+  }
+}
+
+.dashboardLink {
+  a {
+    font: inherit;
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.toggleNav {
+  display: block;
+
+  @media (min-width: breakpoint.$desktop) {
+    display: none;
+  }
+
+  background: none;
+  border: none;
+  height: 24px;
+}
+
+.mobileMenuItems {
+  display: none;
+
+  &.open {
+    display: flex;
+  }
+
+  padding: 20px 0;
+  position: absolute;
+  background-color: white;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  top: 5rem;
+  left: 0;
 }
