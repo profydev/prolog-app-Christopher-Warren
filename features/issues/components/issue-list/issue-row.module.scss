@@ -26,7 +26,8 @@
   }
 }
 
-.cellFont {
+//  composes: cellFont; breaks on commit and makes composes class lowercase
+.cellfont {
   color: color.$gray-500;
   font: font.$text-sm-regular;
 }
