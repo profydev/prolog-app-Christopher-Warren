@@ -1,26 +1,78 @@
 @use "@styles/color";
 @use "@styles/space";
 @use "@styles/font";
+@use "@styles/breakpoint";
+
+.row {
+  @media (max-width: breakpoint.$desktop) {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: space.$s4;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid color.$gray-200;
+    box-shadow:
+      0 1px 2px 0 rgb(16 24 40 / 6%),
+      0 1px 3px 0 rgb(16 24 40 / 10%);
+    border-radius: space.$s2;
+  }
+}
 
 .row:nth-child(2n) {
   background: color.$gray-50;
+
+  @media (max-width: breakpoint.$desktop) {
+    background-color: unset;
+  }
 }
 
-.cell {
-  padding: space.$s4 space.$s6;
+//  composes: cellFont; breaks on commit and makes composes class lowercase
+.cellfont {
   color: color.$gray-500;
   font: font.$text-sm-regular;
 }
 
+.cell {
+  composes: cellfont;
+  padding: space.$s4 space.$s6;
+
+  @media (max-width: breakpoint.$desktop) {
+    text-align: center;
+    padding: space.$s4 space.$s6;
+  }
+}
+
 .issueCell {
-  composes: cell;
+  composes: cellfont;
+  padding: space.$s4 space.$s6;
   display: flex;
   align-items: center;
+
+  @media (max-width: breakpoint.$desktop) {
+    width: 100%;
+    padding: space.$s4 0;
+    overflow: auto;
+  }
+}
+
+.theadMobile {
+  @media (min-width: breakpoint.$desktop) {
+    display: none;
+  }
+
+  font: font.$text-sm-medium;
+  margin-bottom: 0.5rem;
 }
 
 .languageIcon {
   width: space.$s10;
   margin-right: space.$s3;
+}
+
+.issueInfo {
+  @media (max-width: breakpoint.$desktop) {
+    white-space: nowrap;
+  }
 }
 
 .errorTypeAndMessage {

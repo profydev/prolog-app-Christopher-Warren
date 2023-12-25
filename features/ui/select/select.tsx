@@ -3,6 +3,7 @@ import React, { useState, MouseEventHandler, useEffect, useRef } from "react";
 import classNames from "classnames";
 import styles from "./select.module.scss";
 import { Option, SelectProps } from "@features/ui/";
+import { capitalize } from "lodash";
 
 export function Select({
   optionsList,
@@ -90,7 +91,7 @@ export function Select({
             {logoSrc && (
               <img src={logoSrc} className={styles.icon} alt="" aria-disabled />
             )}
-            {selectedValue?.value || placeholder}
+            {capitalize(selectedValue?.value) || placeholder}
           </div>
 
           <img src="/icons/chevron-down.svg" alt="" aria-disabled />
