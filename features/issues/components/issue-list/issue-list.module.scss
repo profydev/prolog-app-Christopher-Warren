@@ -1,6 +1,7 @@
 @use "@styles/color";
 @use "@styles/space";
 @use "@styles/font";
+@use "@styles/breakpoint";
 
 .container {
   background: white;
@@ -11,14 +12,35 @@
     0 2px 4px -2px rgb(16 24 40 / 6%);
   border-radius: space.$s2;
   overflow: hidden;
+
+  @media (max-width: breakpoint.$desktop) {
+    border: none;
+    box-shadow: none;
+  }
 }
 
 .table {
   width: 100%;
+
+  @media (max-width: breakpoint.$desktop) {
+    display: block;
+  }
+
   border-collapse: collapse;
 }
 
+.tbody {
+  @media (max-width: breakpoint.$desktop) {
+    display: block;
+    width: 100%;
+  }
+}
+
 .headerRow {
+  @media (max-width: breakpoint.$desktop) {
+    display: none;
+  }
+
   border-bottom: 1px solid color.$gray-200;
 }
 
