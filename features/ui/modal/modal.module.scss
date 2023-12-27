@@ -1,0 +1,68 @@
+@use "@styles/space";
+@use "@styles/color";
+@use "@styles/font";
+
+.modalContainer {
+  display: none;
+
+  &.isOpen {
+    display: flex;
+  }
+
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: rgb(52 64 84 / 60%);
+
+  /* Background blur/md */
+  backdrop-filter: blur(8px);
+}
+
+.modalCard {
+  background-color: white;
+  padding: space.$s6;
+  max-width: 25rem;
+  border-radius: space.$s3;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    flex: 1;
+  }
+
+  h3 {
+    text-align: center;
+    font: font.$text-lg-medium;
+    color: color.$gray-900;
+    margin-bottom: space.$s2;
+    margin-top: space.$s5;
+  }
+
+  p {
+    text-align: center;
+    font: font.$text-sm-regular;
+    color: color.$gray-500;
+    margin-bottom: space.$s8;
+    margin-top: 0;
+    white-space: pre-line;
+    align-self: stretch;
+  }
+
+  .buttonContainer {
+    display: flex;
+    gap: space.$s3;
+
+    button {
+      flex: 1;
+    }
+  }
+}
+
+.disableScroll {
+  overflow: hidden;
+}
