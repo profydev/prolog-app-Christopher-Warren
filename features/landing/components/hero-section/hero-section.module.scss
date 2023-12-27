@@ -1,0 +1,68 @@
+@use "styles/font";
+@use "styles/color";
+@use "styles/breakpoint";
+@use "styles/space";
+
+.heroSection {
+  @media (min-width: breakpoint.$desktop) {
+    padding: space.$s24 0;
+  }
+
+  padding: space.$s16 0;
+  display: flex;
+  flex-direction: column;
+  gap: space.$s16;
+  align-items: center;
+}
+
+.heading {
+  @media (min-width: breakpoint.$desktop) {
+    padding: 0 space.$s8;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 space.$s4;
+}
+
+.heroTitle {
+  @media (min-width: breakpoint.$desktop) {
+    font: font.$display-xl-semibold;
+    padding-bottom: space.$s6;
+    text-wrap: balance;
+  }
+
+  text-align: center;
+  color: color.$gray-900;
+  font: font.$display-md-semibold;
+  margin: 0;
+  padding-bottom: space.$s4;
+}
+
+.heroSubtitle {
+  @media (min-width: breakpoint.$desktop) {
+    font: font.$text-xl-regular;
+    max-width: 40.5rem;
+  }
+
+  text-align: center;
+  color: color.$gray-500;
+  font: font.$text-lg-regular;
+  margin: 0;
+}
+
+.imageContainer {
+  padding: 0 space.$s4;
+  flex: 1;
+}
+
+.heroImage {
+  max-width: 100%; /* Ensure the image doesn't exceed its container */
+  height: auto; /* Maintain the aspect ratio of the image */
+  display: block; /* Remove extra spacing beneath the image */
+}
+
+.light-gray {
+  background-color: color.$gray-50;
+}
