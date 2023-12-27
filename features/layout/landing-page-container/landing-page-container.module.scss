@@ -1,15 +1,29 @@
-.contactButton {
-  position: absolute;
-  bottom: 2.5rem;
-  right: 2.5rem;
-  padding: 1rem;
-  background: #7f56d9;
-  border-radius: 50%;
-  box-shadow: 0 1px 2px rgb(16 24 40 / 5%);
-  border: none;
-  cursor: pointer;
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+@use "@styles/misc";
 
-  &:hover {
-    background: #6941c6;
+.container {
+  flex-direction: column;
+
+  @media (min-width: breakpoint.$desktop) {
+    flex-direction: row;
+  }
+}
+
+.contentContainer {
+  min-height: calc(
+    100vh - 2 * space.$s8 - misc.$header-height - misc.$footer-height
+  );
+  margin-top: misc.$header-height;
+  padding: space.$s8 space.$s3;
+  background: white;
+
+  @media (min-width: breakpoint.$desktop) {
+    min-height: calc(100vh - space.$s3 - 2 * space.$s8 - misc.$footer-height);
+    margin-top: space.$s3;
+    padding: space.$s8;
+    border-top-left-radius: space.$s10;
   }
 }
