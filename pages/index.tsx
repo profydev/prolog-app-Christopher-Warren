@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import { useGetLanding } from "../features/landing/api/use-get-landing";
 import { HeroSection } from "@features/landing/";
 
-
 const LandingPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,11 +16,9 @@ const LandingPage = () => {
 
   const router = useRouter();
 
-
   const { data } = useGetLanding();
 
   if (!data) return null;
-
 
   return (
     <LandingPageContainer>
@@ -49,7 +46,6 @@ const LandingPage = () => {
       </button>
 
       <HeroSection data={data.sections[0]} />
-
     </LandingPageContainer>
   );
 };
